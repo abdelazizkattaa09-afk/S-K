@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>S&G Bags | Sacs pour femmes</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <a href="#accueil" class="logo">
+        <img src="logo.png" alt="S&G Bags">
+    </a>
+
+    <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#collection">Collection</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact">Contact</a>
+
+        <button id="cartBtn">
+            Panier
+            <span id="cartCount">0</span>
+        </button>
+    </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="accueil">
+
+    <div class="hero-text">
+
+        <p class="small-title">
+            S&G BAGS · COLLECTION 2026
+        </p>
+
+        <h1>
+            L’élégance
+            <br>
+            <i>dans chaque détail.</i>
+        </h1>
+
+        <p class="description">
+            Découvrez notre collection de sacs pour femmes,
+            élégants et modernes, conçus pour accompagner
+            votre style chaque jour.
+        </p>
+
+        <a href="#collection" class="btn">
+            Découvrir la collection
+        </a>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <div class="bag">
+
+            <div class="handle"></div>
+
+            <div class="bag-body">
+                S&G
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COLLECTION -->
+
+<section class="collection" id="collection">
+
+    <div class="section-title">
+
+        <div>
+
+            <p class="small-title">
+                NOTRE SÉLECTION
+            </p>
+
+            <h2>
+                Les sacs du moment
+            </h2>
+
+        </div>
+
+        <p>
+            Une sélection chic, simple et intemporelle.
+        </p>
+
+    </div>
+
+
+    <div class="products">
+
+
+        <!-- SAC 1 -->
+
+        <article class="product">
+
+            <div class="product-image beige">
+
+                <div class="mini-bag">
+                    S&G
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <h3>
+                        Luna
+                    </h3>
+
+                    <p>
+                        Sac à main élégant
+                    </p>
+
+                </div>
+
+                <strong>
+                    349 DH
+                </strong>
+
+            </div>
+
+            <button
+                class="add-btn"
+                data-name="Luna"
+                data-price="349">
+
+                Ajouter au panier
+
+            </button>
+
+        </article>
+
+
+
+        <!-- SAC 2 -->
+
+        <article class="product">
+
+            <div class="product-image gray">
+
+                <div class="mini-bag">
+                    S&G
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <h3>
+                        Noir
+                    </h3>
+
+                    <p>
+                        Mini sac chic
+                    </p>
+
+                </div>
+
+                <strong>
+                    299 DH
+                </strong>
+
+            </div>
+
+            <button
+                class="add-btn"
+                data-name="Noir"
+                data-price="299">
+
+                Ajouter au panier
+
+            </button>
+
+        </article>
+
+
+
+        <!-- SAC 3 -->
+
+        <article class="product">
+
+            <div class="product-image caramel">
+
+                <div class="mini-bag">
+                    S&G
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <h3>
+                        Amal
+                    </h3>
+
+                    <p>
+                        Sac porté épaule
+                    </p>
+
+                </div>
+
+                <strong>
+                    379 DH
+                </strong>
+
+            </div>
+
+            <button
+                class="add-btn"
+                data-name="Amal"
+                data-price="379">
+
+                Ajouter au panier
+
+            </button>
+
+        </article>
+
+
+
+        <!-- SAC 4 -->
+
+        <article class="product">
+
+            <div class="product-image cream">
+
+                <div class="mini-bag">
+                    S&G
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div>
+
+                    <h3>
+                        Élise
+                    </h3>
+
+                    <p>
+                        Sac minimaliste
+                    </p>
+
+                </div>
+
+                <strong>
+                    329 DH
+                </strong>
+
+            </div>
+
+            <button
+                class="add-btn"
+                data-name="Élise"
+                data-price="329">
+
+                Ajouter au panier
+
+            </button>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- À PROPOS -->
+
+<section class="about" id="apropos">
+
+    <div>
+
+        <p class="small-title">
+            S&G BAGS
+        </p>
+
+        <h2>
+            Un style qui vous ressemble.
+        </h2>
+
+    </div>
+
+    <p>
+
+        Chez S&G Bags, nous sélectionnons des modèles
+        modernes et faciles à porter.
+
+        Notre objectif est de proposer des sacs élégants
+        qui donnent une touche spéciale à chaque tenue.
+
+    </p>
+
+</section>
+
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+    <div class="contact-box">
+
+        <p class="small-title">
+            BESOIN D'AIDE ?
+        </p>
+
+        <h2>
+            Parlons de votre prochain sac.
+        </h2>
+
+        <p>
+            Contactez-nous pour connaître les disponibilités,
+            les couleurs et les modalités de livraison.
+        </p>
+
+        <a
+            href="https://wa.me/212771032849"
+            target="_blank"
+            class="btn whatsapp-btn">
+
+            WhatsApp
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- PANIER -->
+
+<aside class="cart" id="cart">
+
+    <div class="cart-header">
+
+        <h2>
+            Votre panier
+        </h2>
+
+        <button id="closeCart">
+            ×
+        </button>
+
+    </div>
+
+
+    <div id="cartItems" class="cart-items">
+
+        <p>
+            Votre panier est vide.
+        </p>
+
+    </div>
+
+
+    <div class="cart-total">
+
+        <span>
+            Total
+        </span>
+
+        <strong id="cartTotal">
+            0 DH
+        </strong>
+
+    </div>
+
+
+    <button
+        class="checkout"
+        id="checkout">
+
+        Commander sur WhatsApp
+
+    </button>
+
+</aside>
+
+
+<div
+    class="overlay"
+    id="overlay">
+</div>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <img
+        src="logo.png"
+        alt="S&G Bags">
+
+    <p>
+        © 2026 S&G Bags — Tous droits réservés.
+    </p>
+
+    <div>
+
+        <a href="https://wa.me/212771032849">
+            WhatsApp
+        </a>
+
+        <a href="#">
+            Instagram
+        </a>
+
+        <a href="https://www.tiktok.com/@sk866460?_r=1&_t=ZS-99ADRxvUVbL">
+            TikTok
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
