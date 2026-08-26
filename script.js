@@ -210,7 +210,7 @@ function updateCart() {
                     </strong>
 
                     <p>
-                        ${product.price} DH
+                        ${} DH
                         ×
                         ${product.quantity}
                     </p>
