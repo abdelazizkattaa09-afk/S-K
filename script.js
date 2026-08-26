@@ -1,379 +1,198 @@
-// ==============================
-// S&G BAGS
-// PANIER + WHATSAPP
-// ==============================
-
-
 const cart = [];
 
+const cartElement = document.getElementById("cart");
+const cartButton = document.getElementById("cartBtn");
+const closeButton = document.getElementById("closeCart");
+const overlay = document.getElementById("overlay");
 
-// ELEMENTS HTML
-
-const cartElement =
-    document.getElementById("cart");
-
-const cartButton =
-    document.getElementById("cartBtn");
-
-const closeButton =
-    document.getElementById("closeCart");
-
-const overlay =
-    document.getElementById("overlay");
-
-const cartItems =
-    document.getElementById("cartItems");
-
-const cartCount =
-    document.getElementById("cartCount");
-
-const cartTotal =
-    document.getElementById("cartTotal");
+const cartItems = document.getElementById("cartItems");
+const cartCount = document.getElementById("cartCount");
+const cartTotal = document.getElementById("cartTotal");
 
 
+// OUVRIR LE PANIER
 
-// ==============================
-// OUVRIR PANIER
-// ==============================
-
-cartButton.addEventListener(
-    "click",
-    () => {
-
-        cartElement.classList.add("open");
-
-        overlay.classList.add("show");
-
-    }
-);
+cartButton.addEventListener("click", () => {
+    cartElement.classList.add("open");
+    overlay.classList.add("show");
+});
 
 
+// FERMER LE PANIER
 
-// ==============================
-// FERMER PANIER
-// ==============================
+closeButton.addEventListener("click", closeCart);
 
-closeButton.addEventListener(
-    "click",
-    closeCart
-);
-
-
-overlay.addEventListener(
-    "click",
-    closeCart
-);
-
+overlay.addEventListener("click", closeCart);
 
 function closeCart() {
-
     cartElement.classList.remove("open");
-
     overlay.classList.remove("show");
-
 }
 
 
+// AJOUTER LES PRODUITS AU PANIER
 
-// ==============================
-// AJOUTER PRODUIT
-// ==============================
+document.querySelectorAll(".add-btn").forEach(button => {
 
-document
-    .querySelectorAll(".add-btn")
-    .forEach(button => {
+    button.addEventListener("click", () => {
 
-        button.addEventListener(
-            "click",
-            () => {
+        const name = button.dataset.name;
+        const price = Number(button.dataset.price);
 
-                const name =
-                    button.dataset.name;
+        const product = cart.find(item => item.name === name);
 
-                const price =
-                    Number(
-                        button.dataset.price
-                    );
+        if (product) {
+            product.quantity++;
+        } else {
+            cart.push({
+                name: name,
+                price: price,
+                quantity: 1
+            });
+        }
 
+        updateCart();
 
-                const existingProduct =
-                    cart.find(
-                        product =>
-                            product.name === name
-                    );
-
-
-                if (existingProduct) {
-
-                    existingProduct.quantity++;
-
-                } else {
-
-                    cart.push({
-
-                        name: name,
-
-                        price: price,
-
-                        quantity: 1
-
-                    });
-
-                }
-
-
-                updateCart();
-
-
-                cartElement.classList.add(
-                    "open"
-                );
-
-
-                overlay.classList.add(
-                    "show"
-                );
-
-            }
-        );
-
+        cartElement.classList.add("open");
+        overlay.classList.add("show");
     });
 
+});
 
 
-// ==============================
-// ACTUALISER PANIER
-// ==============================
+// ACTUALISER LE PANIER
 
 function updateCart() {
 
+    const numberOfProducts = cart.reduce(
+        (total, product) => total + product.quantity,
+        0
+    );
 
-    // NOMBRE TOTAL DE PRODUITS
+    cartCount.textContent = numberOfProducts;
 
-    const totalProducts =
-        cart.reduce(
-            (total, product) => {
-
-                return total +
-                    product.quantity;
-
-            },
-            0
-        );
-
-
-    cartCount.textContent =
-        totalProducts;
-
-
-
-    // PANIER VIDE
 
     if (cart.length === 0) {
 
         cartItems.innerHTML =
             "<p>Votre panier est vide.</p>";
 
-        cartTotal.textContent =
-            "0 DH";
+        cartTotal.textContent = "0 DH";
 
         return;
-
     }
 
-
-
-    // AFFICHER PRODUITS
 
     cartItems.innerHTML = "";
 
 
-    cart.forEach(
-        (product, index) => {
+    cart.forEach((product, index) => {
 
-            const item =
-                document.createElement(
-                    "div"
-                );
+        const item = document.createElement("div");
 
+        item.className = "cart-item";
 
-            item.className =
-                "cart-item";
+        item.innerHTML = `
+            <div>
+                <strong>${product.name}</strong>
 
+                <p>
+                    ${product.price} DH × ${product.quantity}
+                </p>
+            </div>
 
-            item.innerHTML = `
+            <button onclick="removeProduct(${index})">
+                Supprimer
+            </button>
+        `;
 
-                <div>
-
-                    <strong>
-                        ${product.name}
-                    </strong>
-
-                    <p>
-                        ${} DH
-                        ×
-                        ${product.quantity}
-                    </p>
-
-                </div>
+        cartItems.appendChild(item);
+    });
 
 
-                <button
-                    onclick="removeProduct(${index})">
-
-                    Supprimer
-
-                </button>
-
-            `;
-
-
-            cartItems.appendChild(item);
-
-        }
+    const total = cart.reduce(
+        (sum, product) =>
+            sum + product.price * product.quantity,
+        0
     );
 
-
-
-    // CALCUL TOTAL
-
-    const total =
-        cart.reduce(
-            (sum, product) => {
-
-                return sum +
-                    product.price *
-                    product.quantity;
-
-            },
-            0
-        );
-
-
-    cartTotal.textContent =
-        total + " DH";
-
+    cartTotal.textContent = total + " DH";
 }
 
 
-
-// ==============================
 // SUPPRIMER PRODUIT
-// ==============================
 
 function removeProduct(index) {
 
     cart.splice(index, 1);
 
     updateCart();
-
 }
 
 
-
-// ==============================
 // COMMANDER SUR WHATSAPP
-// ==============================
 
-document
-    .getElementById("checkout")
-    .addEventListener(
-        "click",
-        () => {
+document.getElementById("checkout").addEventListener("click", () => {
 
+    if (cart.length === 0) {
 
-            // SI PANIER VIDE
+        alert("Votre panier est vide.");
 
-            if (cart.length === 0) {
-
-                alert(
-                    "Votre panier est vide."
-                );
-
-                return;
-
-            }
+        return;
+    }
 
 
-
-            // NUMERO WHATSAPP
-
-            const phone =
-                "212771032849";
+    const phone = "212771032849";
 
 
+    let message = "Bonjour S&G Bags 👋\n\n";
 
-            // MESSAGE
-
-            let message =
-                "Bonjour S&G Bags 👋\n\n";
-
-            message +=
-                "Je souhaite commander :\n\n";
+    message += "Je souhaite commander :\n\n";
 
 
+    cart.forEach(product => {
 
-            // PRODUITS
+        const subtotal =
+            product.price * product.quantity;
 
-            cart.forEach(
-                product => {
-
-                    message +=
-                        "👜 " +
-                        product.name +
-                        " x" +
-                        product.quantity +
-                        " = " +
-                        (
-                            product.price *
-                            product.quantity
-                        ) +
-                        " DH\n";
-
-                }
-            );
+        message +=
+            "👜 " +
+            product.name +
+            " x" +
+            product.quantity +
+            " = " +
+            subtotal +
+            " DH\n";
+    });
 
 
-
-            // TOTAL
-
-            const total =
-                cart.reduce(
-                    (sum, product) => {
-
-                        return sum +
-                            product.price *
-                            product.quantity;
-
-                    },
-                    0
-                );
-
-
-            message +=
-                "\n💰 Total : " +
-                total +
-                " DH";
-
-
-            message +=
-                "\n\nMerci !";
-
-
-
-            // OUVRIR WHATSAPP
-
-            const whatsappURL =
-                "https://wa.me/" +
-                phone +
-                "?text=" +
-                encodeURIComponent(message);
-
-
-            window.open(
-                whatsappURL,
-                "_blank"
-            );
-
-        }
+    const total = cart.reduce(
+        (sum, product) =>
+            sum + product.price * product.quantity,
+        0
     );
+
+
+    message +=
+        "\n💰 Total : " +
+        total +
+        " DH";
+
+
+    message +=
+        "\n\nMerci !";
+
+
+    const whatsappURL =
+        "https://wa.me/" +
+        phone +
+        "?text=" +
+        encodeURIComponent(message);
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+});
